@@ -1,13 +1,114 @@
 <!doctype html>
-<html lang="en">
+<html lang="ko">
   <head>
     <meta charset="UTF-8" />
-    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>cafe24-option-ui</title>
+    <title>Cafe24 커스텀 옵션 UI 테스트</title>
   </head>
   <body>
-    <div id="app"></div>
+    <!-- 실제 카페24 환경을 모방하기 위한 더미 상품 영역 -->
+    <div
+      style="
+        max-width: 500px;
+        margin: 50px auto;
+        padding: 20px;
+        border: 1px solid #ddd;
+      "
+    >
+      <h2>상품 상세페이지 (가상)</h2>
+
+      <div
+        id="cafe24-native-options"
+        style="padding: 10px; background: #eee; margin-bottom: 20px"
+      >
+        <p><strong>[숨겨질 카페24 기본 옵션 (텍스트 버튼형)]</strong></p>
+
+        <table
+          border="1"
+          summary=""
+          class="xans-element- xans-product xans-product-option xans-record-"
+        >
+          <tbody
+            class="xans-element- xans-product xans-product-option xans-record-"
+          >
+            <tr>
+              <th scope="row">옵션 선택</th>
+              <td>
+                <ul
+                  option_product_no="11"
+                  option_select_element="ec-option-select-finder"
+                  option_sort_no="1"
+                  option_type="F"
+                  item_listing_type="S"
+                  option_title="옵션 선택"
+                  product_type="product_option"
+                  product_option_area="product_option_11_0"
+                  option_style="button"
+                  ec-dev-id="product_option_id1"
+                  ec-dev-name="option1"
+                  ec-dev-class="ProductOption0"
+                  class="ec-product-button"
+                  required="true"
+                >
+                  <li
+                    class="option_value_P000000L000A"
+                    title="10개입_1 (+24,700원)"
+                  >
+                    <a href="#none"><span>10개입_1</span></a>
+                  </li>
+                  <li
+                    class="option_value_P000000L000B"
+                    title="10개입_2 (+49,400원)"
+                  >
+                    <a href="#none"><span>10개입_2</span></a>
+                  </li>
+                  <li
+                    class="option_value_P000000L000C"
+                    title="30개입_1 (+70,500원)"
+                  >
+                    <a href="#none"><span>30개입_1</span></a>
+                  </li>
+                  <li
+                    class="option_value_P000000L000D"
+                    title="30개입_2 (+141,000원)"
+                  >
+                    <a href="#none"><span>30개입_2</span></a>
+                  </li>
+                  <li
+                    class="option_value_P000000L000E"
+                    title="50개입_1 (+111,500원)"
+                  >
+                    <a href="#none"><span>50개입_1</span></a>
+                  </li>
+                  <li
+                    class="option_value_P000000L000F"
+                    title="50개입_2 (+223,000원)"
+                  >
+                    <a href="#none"><span>50개입_2</span></a>
+                  </li>
+                  <li
+                    class="option_value_P000000L000G"
+                    title="100개입_1 (+196,000원)"
+                  >
+                    <a href="#none"><span>100개입_1</span></a>
+                  </li>
+                  <li
+                    class="option_value_P000000L000H"
+                    title="100개입_2 (+392,000원)"
+                  >
+                    <a href="#none"><span>100개입_2</span></a>
+                  </li>
+                </ul>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <!-- 2. 우리가 렌더링할 커스텀 UI가 들어갈 공간 -->
+      <div id="cafe24-custom-options-root"></div>
+    </div>
+
     <script type="module" src="/src/main.ts"></script>
   </body>
 </html>
