@@ -59,13 +59,19 @@ export const OPTIONS_DATA: OptionConfig[] = [
   },
 ];
 
+import tteokImg from './assets/images/tteok.png';
+import curryImg from './assets/images/curry.png';
+import hotImg from './assets/images/chicken.png';
+import chipotleImg from './assets/images/mayo.png';
+import honeyImg from './assets/images/honey.png';
+
 export const FLAVORS_DATA: FlavorConfig[] = [
   {
     id: "flavor-1",
     name: "떡볶이맛(10개입)",
     calories: 130,
     protein: 18,
-    imageUrl: "/images/tteok.png",
+    imageUrl: tteokImg,
     isNew: true,
   },
   {
@@ -73,7 +79,7 @@ export const FLAVORS_DATA: FlavorConfig[] = [
     name: "버터치킨커리맛(10개입)",
     calories: 105,
     protein: 18,
-    imageUrl: "/images/curry.png",
+    imageUrl: curryImg,
     isSoldOut: true,
   },
   {
@@ -81,20 +87,20 @@ export const FLAVORS_DATA: FlavorConfig[] = [
     name: "핫양념치킨맛(10개입)",
     calories: 125,
     protein: 19,
-    imageUrl: "/images/chicken.png",
+    imageUrl: hotImg,
   },
   {
     id: "flavor-4",
     name: "치폴레마요맛(10개입)",
     calories: 125,
     protein: 18,
-    imageUrl: "/images/mayo.png",
+    imageUrl: chipotleImg,
   },
   {
     id: "flavor-5",
     name: "허니소이맛(10개입)",
     calories: 125,
     protein: 18,
-    imageUrl: "/images/honey.png",
-  },
+    imageUrl: honeyImg,
+  }
 ];
