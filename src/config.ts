@@ -65,7 +65,7 @@ export const FLAVORS_DATA: FlavorConfig[] = [
     name: "떡볶이맛(10개입)",
     calories: 130,
     protein: 18,
-    imageUrl: "https://via.placeholder.com/60?text=Topokki",
+    imageUrl: "/images/tteok.png",
     isNew: true,
   },
   {
@@ -73,7 +73,7 @@ export const FLAVORS_DATA: FlavorConfig[] = [
     name: "버터치킨커리맛(10개입)",
     calories: 105,
     protein: 18,
-    imageUrl: "https://via.placeholder.com/60?text=Curry",
+    imageUrl: "/images/curry.png",
     isSoldOut: true,
   },
   {
@@ -81,20 +81,20 @@ export const FLAVORS_DATA: FlavorConfig[] = [
     name: "핫양념치킨맛(10개입)",
     calories: 125,
     protein: 19,
-    imageUrl: "https://via.placeholder.com/60?text=Hot",
+    imageUrl: "/images/chicken.png",
   },
   {
     id: "flavor-4",
     name: "치폴레마요맛(10개입)",
     calories: 125,
     protein: 18,
-    imageUrl: "https://via.placeholder.com/60?text=Chipotle",
+    imageUrl: "/images/mayo.png",
   },
   {
     id: "flavor-5",
     name: "허니소이맛(10개입)",
     calories: 125,
     protein: 18,
-    imageUrl: "https://via.placeholder.com/60?text=Honey",
-  }
+    imageUrl: "/images/honey.png",
+  },
 ];

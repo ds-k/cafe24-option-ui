@@ -7,7 +7,7 @@ import { Toast } from "./components/Toast";
 import { cafe24Sync } from "./cafe24Sync";
 
 class Cafe24OptionCustomizer {
-  private rootElement: HTMLElement;
+  private rootElement!: HTMLElement;
 
   constructor(rootSelector: string) {
     const root = document.querySelector<HTMLElement>(rootSelector);
