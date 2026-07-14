@@ -1,60 +1,110 @@
-import './style.css'
-import typescriptLogo from './assets/typescript.svg'
-import viteLogo from './assets/vite.svg'
-import heroImg from './assets/hero.png'
-import { setupCounter } from './counter.ts'
+import "./style.css";
+import { OPTIONS_DATA } from "./config";
+import { OptionCard } from "./components/OptionCard";
+import { FlavorPanel } from "./components/FlavorPanel";
+import { SelectedOptionsPanel } from "./components/SelectedOptionsPanel";
+import { Toast } from "./components/Toast";
+import { cafe24Sync } from "./cafe24Sync";
 
-document.querySelector<HTMLDivElement>('#app')!.innerHTML = `
-<section id="center">
-  <div class="hero">
-    <img src="${heroImg}" class="base" width="170" height="179">
-    <img src="${typescriptLogo}" class="framework" alt="TypeScript logo"/>
-    <img src="${viteLogo}" class="vite" alt="Vite logo" />
-  </div>
-  <div>
-    <h1>Get started</h1>
-    <p>Edit <code>src/main.ts</code> and save to test <code>HMR</code></p>
-  </div>
-  <button id="counter" type="button" class="counter"></button>
-</section>
+class Cafe24OptionCustomizer {
+  private rootElement: HTMLElement;
 
-<div class="ticks"></div>
+  constructor(rootSelector: string) {
+    const root = document.querySelector<HTMLElement>(rootSelector);
+    if (!root) {
+      console.warn(
+        `[Cafe24OptionCustomizer] Root element '${rootSelector}' not found.`,
+      );
+      return;
+    }
+    this.rootElement = root;
+    this.init();
+  }
 
-<section id="next-steps">
-  <div id="docs">
-    <svg class="icon" role="presentation" aria-hidden="true"><use href="/icons.svg#documentation-icon"></use></svg>
-    <h2>Documentation</h2>
-    <p>Your questions, answered</p>
-    <ul>
-      <li>
-        <a href="https://vite.dev/" target="_blank">
-          <img class="logo" src="${viteLogo}" alt="" />
-          Explore Vite
-        </a>
-      </li>
-      <li>
-        <a href="https://www.typescriptlang.org" target="_blank">
-          <img class="button-icon" src="${typescriptLogo}" alt="">
-          Learn more
-        </a>
-      </li>
-    </ul>
-  </div>
-  <div id="social">
-    <svg class="icon" role="presentation" aria-hidden="true"><use href="/icons.svg#social-icon"></use></svg>
-    <h2>Connect with us</h2>
-    <p>Join the Vite community</p>
-    <ul>
-      <li><a href="https://github.com/vitejs/vite" target="_blank"><svg class="button-icon" role="presentation" aria-hidden="true"><use href="/icons.svg#github-icon"></use></svg>GitHub</a></li>
-      <li><a href="https://chat.vite.dev/" target="_blank"><svg class="button-icon" role="presentation" aria-hidden="true"><use href="/icons.svg#discord-icon"></use></svg>Discord</a></li>
-      <li><a href="https://x.com/vite_js" target="_blank"><svg class="button-icon" role="presentation" aria-hidden="true"><use href="/icons.svg#x-icon"></use></svg>X.com</a></li>
-      <li><a href="https://bsky.app/profile/vite.dev" target="_blank"><svg class="button-icon" role="presentation" aria-hidden="true"><use href="/icons.svg#bluesky-icon"></use></svg>Bluesky</a></li>
-    </ul>
-  </div>
-</section>
+  private init() {
+    // 컴포넌트 마운트 시 Cafe24 DOM 파싱 동기화 실행
+    cafe24Sync.init();
+    this.render();
+  }
 
-<div class="ticks"></div>
-<section id="spacer"></section>
-`
+  private render() {
+    // 1. 기본 뼈대 컨테이너 렌더링
+    this.rootElement.innerHTML = `
+      <div class="custom-option-wrapper" style="position: relative;">
+        <div class="option-accordion">
+          <div class="custom-option-header" id="accordion-header">
+            <span>옵션 선택 (필수)</span>
+            <div class="header-arrow" style="transform: rotate(180deg);">
+              <svg viewBox="0 0 10 6" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M1 1L5 5L9 1" stroke="#777777" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+            </div>
+          </div>
+          <div class="custom-option-list" id="accordion-content"></div>
+        </div>
+        <div class="flavor-panel-container"></div>
+        <div class="selected-options-container"></div>
+      </div>
+    `;
 
-setupCounter(document.querySelector<HTMLButtonElement>('#counter')!)
+    const accordionHeader = this.rootElement.querySelector(
+      "#accordion-header",
+    ) as HTMLElement;
+    const accordionContent = this.rootElement.querySelector(
+      "#accordion-content",
+    ) as HTMLElement;
+    const flavorPanelContainer = this.rootElement.querySelector(
+      ".flavor-panel-container",
+    ) as HTMLElement;
+    const selectedOptionsContainer = this.rootElement.querySelector(
+      ".selected-options-container",
+    ) as HTMLElement;
+
+    // 2. 옵션 카드 렌더링
+    OPTIONS_DATA.forEach((option) => {
+      const card = new OptionCard(option);
+      accordionContent.appendChild(card.getElement());
+    });
+
+    // 아코디언 토글 로직
+    let isAccordionOpen = true;
+    accordionHeader.addEventListener("click", () => {
+      isAccordionOpen = !isAccordionOpen;
+      if (isAccordionOpen) {
+        accordionContent.style.display = "flex";
+        accordionHeader.querySelector<HTMLElement>(
+          ".header-arrow",
+        )!.style.transform = "rotate(180deg)";
+      } else {
+        accordionContent.style.display = "none";
+        accordionHeader.querySelector<HTMLElement>(
+          ".header-arrow",
+        )!.style.transform = "rotate(0deg)";
+      }
+    });
+
+    // 3. 서브 패널 (FlavorPanel) 부착
+    if (flavorPanelContainer) {
+      const flavorPanel = new FlavorPanel();
+      flavorPanelContainer.appendChild(flavorPanel.getElement());
+    }
+
+    // 4. 선택한 옵션 리스트 (SelectedOptionsPanel) 부착
+    if (selectedOptionsContainer) {
+      const selectedOptionsPanel = new SelectedOptionsPanel();
+      selectedOptionsContainer.appendChild(selectedOptionsPanel.getElement());
+    }
+
+    // 5. 전역 토스트 컴포넌트 마운트
+    const wrapper = this.rootElement.querySelector(
+      ".custom-option-wrapper",
+    ) as HTMLElement;
+    if (wrapper) {
+      new Toast(wrapper);
+    }
+  }
+}
+
+document.addEventListener("DOMContentLoaded", () => {
+  new Cafe24OptionCustomizer("#cafe24-custom-options-root");
+});
