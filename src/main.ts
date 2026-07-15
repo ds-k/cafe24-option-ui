@@ -23,8 +23,10 @@ document.addEventListener("DOMContentLoaded", () => {
     window.innerWidth <= 768;
 
   if (isMobileDevice) {
+    document.body.classList.add("is-mobile");
     new MobileApp(rootElement);
   } else {
+    document.body.classList.add("is-pc");
     new PcApp(rootElement);
   }
 });

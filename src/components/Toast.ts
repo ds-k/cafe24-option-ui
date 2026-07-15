@@ -1,3 +1,6 @@
+import checkIcon from "../assets/icons/check.svg";
+import cautionIcon from "../assets/icons/caution.svg";
+
 export class Toast {
   private element: HTMLElement;
   private timeoutId: number | null = null;
@@ -18,13 +21,15 @@ export class Toast {
   private bindEvents() {
     window.addEventListener("show-toast", (e: Event) => {
       const customEvent = e as CustomEvent;
-      this.show(customEvent.detail.message);
+      this.show(customEvent.detail.message, customEvent.detail.type || "success");
     });
   }
 
-  public show(message: string, duration: number = 2000) {
-    this.element.textContent = message;
-    this.element.style.display = "block";
+  public show(message: string, type: "success" | "error" = "success", duration: number = 2000) {
+    const icon = type === "success" ? checkIcon : cautionIcon;
+    this.element.innerHTML = `<img src="${icon}" alt="${type}" style="width: 20px; height: 20px; vertical-align: middle; margin-right: 8px;"><span>${message}</span>`;
+    this.element.style.display = "flex";
+    this.element.style.alignItems = "center";
     
     // 강제 리플로우 후 opacity 트랜지션 적용
     void this.element.offsetWidth; 

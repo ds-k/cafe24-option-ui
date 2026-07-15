@@ -33,7 +33,8 @@ body {
   flex-direction: column;
   align-items: flex-start;
   gap: 12px;
-  width: 392px;
+  width: 100%;
+  max-width: 392px;
 }
 
 /* Header */
@@ -82,6 +83,12 @@ body {
   align-items: flex-start;
   width: 100%;
   box-sizing: border-box;
+}
+
+.option-accordion,
+.flavor-panel-container,
+.selected-options-container {
+  width: 100%;
 }
 
 /* Card */
@@ -599,25 +606,29 @@ body {
   color: #eb0004;
 }
 
-/* 카페24 기본 옵션과 선택된 리스트 숨김 */
+/* 카페24 기본 옵션과 선택된 리스트 숨김 (PC/MO 공통) */
 .xans-product-option,
 [module="product_option"],
 #totalProducts {
   display: none !important;
 }
 
-/* =========================================
-   Mobile View (Bottom Sheet & Floating Bar)
-   ========================================= */
-
-/* 카페24 기본 모바일 고정 바 숨김 */
-#orderFixArea,
-#fixed_action_button,
-#fixedActionButton,
-#totalPrice,
-.ec-base-button.gFixed,
-.xans-product-action {
-  display: none !important;
+/* 카페24 기본 모바일 고정 바 숨김 (모바일 환경에서만 숨김 처리하되, click 이벤트를 위해 display none은 피함) */
+body.is-mobile #orderFixArea,
+body.is-mobile #fixed_action_button,
+body.is-mobile #fixedActionButton,
+body.is-mobile #totalPrice,
+body.is-mobile .ec-base-button.gFixed,
+body.is-mobile .xans-product-action {
+  opacity: 0 !important;
+  position: absolute !important;
+  z-index: -9999 !important;
+  pointer-events: none !important;
+  /* jQuery의 :visible 체크를 통과하기 위해 1px 이상의 크기 유지 및 visibility: visible */
+  width: 1px !important;
+  height: 1px !important;
+  overflow: hidden !important;
+  visibility: visible !important;
 }
 
 .custom-option-wrapper.mobile {

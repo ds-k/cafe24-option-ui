@@ -143,9 +143,9 @@ export class FlavorPanel {
     this.element.innerHTML = `
       <div class="custom-option-header" style="margin-bottom: 20px; width: 100%;">
         <span>${state.selectedOption.name} 맛 선택</span>
-        <div class="header-arrow flavor-close-btn" style="transform: none; cursor: pointer;">
-          <svg width="20" height="20" viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <path d="M13 1L1 13M1 1L13 13" stroke="#777777" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/>
+        <div class="flavor-close-btn" style="cursor: pointer; display: flex; align-items: center; justify-content: center; width: 40px; height: 40px; margin-right: -8px;">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M18 6L6 18M6 6L18 18" stroke="#777777" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
           </svg>
         </div>
       </div>
