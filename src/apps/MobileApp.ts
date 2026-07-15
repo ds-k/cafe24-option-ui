@@ -177,10 +177,11 @@ export class MobileApp {
         }));
         return;
       }
-      const nativeCartBtn = document.querySelector("#actionCart, #actionCartClone, .btnBasket") as HTMLElement;
+      // 모바일 네이티브 장바구니 버튼 트리거
+      const nativeCartBtn = document.querySelector(".xans-product-action #actionCart, .xans-product-action #actionCartClone, #actionCart, .xans-product-action .btnBasket") as HTMLElement;
       if (nativeCartBtn) {
-         nativeCartBtn.click();
-         closeSheet();
+        nativeCartBtn.click();
+        closeSheet();
       } else {
          window.dispatchEvent(new CustomEvent("show-toast", {
           detail: { message: "모바일 장바구니 버튼을 찾을 수 없습니다.", type: "error" }
@@ -198,9 +199,12 @@ export class MobileApp {
         return;
       }
       
-      const nativeBuyBtn = document.querySelector("#btn_buy_mobile_clone_id, #actionBuy, a.btnStrong") as HTMLElement;
+      // 모바일 네이티브 구매하기 버튼 트리거
+      const nativeBuyBtn = document.querySelector(".xans-product-action #actionBuy, .xans-product-action #actionBuyCloneFixed, #actionBuy, .xans-product-action a.btnStrong") as HTMLElement;
       if (nativeBuyBtn) {
-         nativeBuyBtn.click();
+        // span 등 내부 엘리먼트일 수 있으므로 가장 가까운 버튼이나 a태그로 클릭
+        const clickableBtn = nativeBuyBtn.closest("button, a") as HTMLElement || nativeBuyBtn;
+        clickableBtn.click();
       } else {
          window.dispatchEvent(new CustomEvent("show-toast", {
           detail: { message: "모바일 구매하기 버튼을 찾을 수 없습니다.", type: "error" }
