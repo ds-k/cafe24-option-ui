@@ -2,6 +2,10 @@
 
 본 프로젝트는 Cafe24 상품 상세페이지의 기본 구매 흐름을 유지하면서 커스텀 골라담기(옵션) UI를 구현한 결과물입니다.
 
+## 0. 링크
+PC: [PC 링크](https://daeseongkim05.cafe24.com/product/%EA%B3%A8%EB%9D%BC%EB%8B%B4%EA%B8%B0-%ED%85%8C%EC%8A%A4%ED%8A%B8-%EC%83%81%ED%92%88/11/category/1/display/2/?icid=MAIN.product_listmain_1#none)
+MO: [Mobile 링크](https://daeseongkim05.cafe24.com/m/product/%EA%B3%A8%EB%9D%BC%EB%8B%B4%EA%B8%B0-%ED%85%8C%EC%8A%A4%ED%8A%B8-%EC%83%81%ED%92%88/11/category/1/display/2/?icid=MAIN.product_listmain_1)
+
 ## 1. 프로젝트 구조 및 스택 (cafe24-option-ui)
 
 ### 🌳 Tree 구조
