@@ -6,7 +6,22 @@
 }
 
 body {
-  font-family: "Pretendard Variable", Pretendard, -apple-system, BlinkMacSystemFont, system-ui, Roboto, "Helvetica Neue", "Segoe UI", "Apple SD Gothic Neo", "Noto Sans KR", "Malgun Gothic", "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", sans-serif;
+  font-family:
+    "Pretendard Variable",
+    Pretendard,
+    -apple-system,
+    BlinkMacSystemFont,
+    system-ui,
+    Roboto,
+    "Helvetica Neue",
+    "Segoe UI",
+    "Apple SD Gothic Neo",
+    "Noto Sans KR",
+    "Malgun Gothic",
+    "Apple Color Emoji",
+    "Segoe UI Emoji",
+    "Segoe UI Symbol",
+    sans-serif;
   color: #171717;
   margin: 0;
   padding: 20px;
@@ -31,9 +46,9 @@ body {
   gap: 8px;
   width: 392px;
   height: 44px;
-  background: #F4F4F4;
+  background: #f4f4f4;
   border-radius: 4px;
-  
+
   font-weight: 500;
   font-size: 14px;
   color: #525252;
@@ -76,14 +91,14 @@ body {
   gap: 10px;
   width: 392px;
   height: 64px;
-  background: #FFFFFF;
-  border-bottom: 1px solid #EDEDED;
+  background: #ffffff;
+  border-bottom: 1px solid #ededed;
   cursor: pointer;
   transition: background-color 0.2s ease;
 }
 
 .custom-option-card:hover:not(.is-disabled) {
-  background-color: #FAFAFA;
+  background-color: #fafafa;
 }
 
 .custom-option-card.is-disabled {
@@ -121,21 +136,21 @@ body {
 .card-radio {
   width: 20px;
   height: 20px;
-  background: #FFFFFF;
-  border: 1.5px solid #E5E5E5;
+  background: #ffffff;
+  border: 1.5px solid #e5e5e5;
   border-radius: 999px;
   position: relative;
   transition: all 0.2s ease;
 }
 
 .custom-option-card.is-selected {
-  background-color: #FFF5F1;
-  border-color: #FFF5F1;
+  background-color: #fff5f1;
+  border-color: #fff5f1;
 }
 
 .custom-option-card.is-selected .card-radio {
   border-width: 6px;
-  border-color: #FF692E; 
+  border-color: #ff692e;
 }
 
 .card-name {
@@ -201,8 +216,8 @@ body {
   padding: 0px 4px;
   height: 20px;
   border-radius: 2px;
-  
-  font-family: 'SUIT', sans-serif;
+
+  font-family: "SUIT", sans-serif;
   font-weight: 600;
   font-size: 12px;
   line-height: 15px;
@@ -210,8 +225,8 @@ body {
 }
 
 .badge-orange {
-  background: #FFF1EB;
-  color: #FF692E;
+  background: #fff1eb;
+  color: #ff692e;
 }
 
 /* =========================================
@@ -221,8 +236,8 @@ body {
   display: flex;
   flex-direction: column;
   margin-top: 16px;
-  background: #FFFFFF;
-  border: 1px solid #E5E5E5;
+  background: #ffffff;
+  border: 1px solid #e5e5e5;
   border-radius: 8px;
   padding: 0;
   width: 392px;
@@ -231,7 +246,7 @@ body {
 
 .flavor-panel .custom-option-header {
   border-radius: 0;
-  border-bottom: 1px solid #E5E5E5;
+  border-bottom: 1px solid #e5e5e5;
   margin-bottom: 0 !important;
 }
 
@@ -276,7 +291,7 @@ body {
   width: 44px;
   height: 44px;
   background: rgba(0, 0, 0, 0.5);
-  color: #FFFFFF;
+  color: #ffffff;
   border-radius: 50%;
   display: flex;
   align-items: center;
@@ -292,7 +307,7 @@ body {
 .flavor-new-text {
   font-size: 12px;
   font-weight: 700;
-  color: #FF692E;
+  color: #ff692e;
   margin-bottom: 2px;
 }
 
@@ -314,14 +329,14 @@ body {
 .flavor-qty-ctrl {
   display: flex;
   align-items: center;
-  border: 1px solid #E5E5E5;
+  border: 1px solid #e5e5e5;
   border-radius: 4px;
   height: 32px;
 }
 
 .flavor-item.sold-out .flavor-qty-ctrl {
-  background: #F4F4F4;
-  border-color: #E5E5E5;
+  background: #f4f4f4;
+  border-color: #e5e5e5;
 }
 
 .flavor-item.sold-out .flavor-qty-btn {
@@ -331,7 +346,7 @@ body {
 .flavor-qty-btn {
   width: 32px;
   height: 100%;
-  background: #FFFFFF;
+  background: #ffffff;
   border: none;
   cursor: pointer;
   font-size: 16px;
@@ -341,7 +356,7 @@ body {
   justify-content: center;
 }
 .flavor-qty-btn:disabled {
-  color: #CCCCCC;
+  color: #cccccc;
   cursor: not-allowed;
 }
 
@@ -359,7 +374,7 @@ body {
   align-items: center;
   justify-content: space-between;
   padding: 16px 20px;
-  border-top: 1px solid #E5E5E5;
+  border-top: 1px solid #e5e5e5;
 }
 
 .flavor-total-label {
@@ -384,7 +399,7 @@ body {
   top: -46px; /* 위로 띄우기 */
   right: 0;
   background: #171717;
-  color: #FFFFFF;
+  color: #ffffff;
   padding: 8px 12px;
   border-radius: 20px;
   font-size: 13px;
@@ -418,7 +433,7 @@ body {
 
 .flavor-complete-btn {
   width: 100%;
-  background: #E5E5E5;
+  background: #e5e5e5;
   color: #999999;
   border: none;
   padding: 16px;
@@ -430,7 +445,7 @@ body {
 
 .flavor-complete-btn.active {
   background: #000000;
-  color: #FFFFFF;
+  color: #ffffff;
   cursor: pointer;
 }
 
@@ -457,7 +472,7 @@ body {
 }
 
 .cart-item {
-  background: #F4F4F4;
+  background: #f4f4f4;
   border-radius: 8px;
   padding: 16px;
   display: flex;
@@ -503,8 +518,8 @@ body {
 .cart-qty-ctrl {
   display: flex;
   align-items: center;
-  background: #FFFFFF;
-  border: 1px solid #E5E5E5;
+  background: #ffffff;
+  border: 1px solid #e5e5e5;
   border-radius: 4px;
   height: 32px;
 }
@@ -540,11 +555,11 @@ body {
    ========================================= */
 .cafe24-toast {
   position: absolute;
-  bottom: -50px; 
+  bottom: -50px;
   left: 50%;
   transform: translateX(-50%);
   background: rgba(23, 23, 23, 0.9);
-  color: #FFFFFF;
+  color: #ffffff;
   padding: 12px 24px;
   border-radius: 999px;
   font-size: 14px;
@@ -561,6 +576,156 @@ body {
 }
 
 .badge-red {
-  background: #FFEBEB;
-  color: #EB0004;
+  background: #ffebeb;
+  color: #eb0004;
+}
+
+/* 카페24 기본 옵션과 선택된 리스트 숨김 */
+.xans-product-option,
+[module="product_option"],
+#totalProducts {
+  display: none !important;
+}
+
+/* =========================================
+   Mobile View (Bottom Sheet & Floating Bar)
+   ========================================= */
+
+/* 카페24 기본 모바일 고정 바 숨김 */
+#orderFixArea,
+#fixed_action_button,
+.ec-base-button.gFixed {
+  display: none !important;
+}
+
+.custom-option-wrapper.mobile {
+  padding-bottom: 80px; /* 플로팅 바 공간 확보 */
+}
+
+/* 플로팅 하단 바 */
+.mobile-floating-bar {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 60px;
+  background: #ffffff;
+  display: flex;
+  align-items: center;
+  padding: 8px 16px;
+  gap: 8px;
+  border-top: 1px solid #e5e5e5;
+  z-index: 1000;
+  box-sizing: border-box;
+}
+
+.mobile-floating-bar .btn-cart {
+  width: 48px;
+  height: 48px;
+  border: 1px solid #d9d9d9;
+  border-radius: 4px;
+  background: #ffffff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  flex-shrink: 0;
+}
+
+.mobile-floating-bar .btn-buy {
+  flex-grow: 1;
+  height: 48px;
+  background: #FF4A00;
+  color: #ffffff;
+  border: none;
+  border-radius: 4px;
+  font-size: 16px;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+/* 바텀 시트 오버레이 (Dim) */
+.mobile-bottom-sheet-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.5);
+  z-index: 1001;
+  opacity: 0;
+  visibility: hidden;
+  transition: all 0.3s ease;
+}
+
+.mobile-bottom-sheet-overlay.active {
+  opacity: 1;
+  visibility: visible;
+}
+
+/* 바텀 시트 본체 */
+.mobile-bottom-sheet {
+  position: fixed;
+  bottom: -100%;
+  left: 0;
+  width: 100%;
+  background: #ffffff;
+  border-radius: 16px 16px 0 0;
+  z-index: 1002;
+  transition: bottom 0.3s ease;
+  max-height: 85vh;
+  display: flex;
+  flex-direction: column;
+}
+
+.mobile-bottom-sheet.active {
+  bottom: 0;
+}
+
+.mobile-step1, .mobile-step2 {
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
+  overflow-y: auto;
+  max-height: 85vh;
+}
+
+/* 바텀 시트 안의 옵션 리스트, 선택 영역 패딩 */
+.mobile-bottom-sheet .option-accordion,
+.mobile-bottom-sheet .selected-options-container,
+.mobile-bottom-sheet .flavor-panel-container {
+  padding: 16px;
+}
+
+.mobile-bottom-sheet .option-accordion {
+  border: none;
+  padding-bottom: 0;
+}
+
+/* 바텀 시트 내 구매하기 버튼(Footer) */
+.mobile-sheet-footer {
+  padding: 16px;
+  border-top: 1px solid #f2f2f2;
+  background: #ffffff;
+}
+
+.btn-buy-submit {
+  width: 100%;
+  height: 48px;
+  background: #FF4A00;
+  color: #ffffff;
+  border: none;
+  border-radius: 4px;
+  font-size: 16px;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+/* 모바일 전용 토스트 메시지 위치 조정 */
+.custom-option-wrapper.mobile .cafe24-toast {
+  position: fixed;
+  bottom: 80px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 99999;
 }
