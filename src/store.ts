@@ -6,7 +6,7 @@ export interface FlavorSelection {
 }
 
 export interface CartItem {
-  id: string; // 고유 ID 
+  id: string; // 고유 ID
   optionId: string; // "10개입"
   optionName: string; // "10개입"
   price: number;
@@ -56,7 +56,7 @@ class Store {
       .reduce((sum, item) => sum + item.quantity, 0);
   }
 
-  // Cafe24 DOM 파싱 후 횟수 한도 초기화 
+  // Cafe24 DOM 파싱 후 횟수 한도 초기화
   setOptionLimits(limits: { [optionId: string]: number }) {
     this.state = {
       ...this.state,
@@ -119,7 +119,7 @@ class Store {
     if (oldTotal > 0) {
       cafe24Sync.deleteItem(optionId, oldTotal);
     }
-    
+
     // 2. 새 수량에 맞는 Cafe24 옵션 클릭 (_1, _2 등)
     if (newTotal > 0) {
       cafe24Sync.triggerCafe24Click(optionId, newTotal);
@@ -132,11 +132,11 @@ class Store {
 
     const option = this.state.selectedOption;
     const optionId = option.id;
-    
+
     const limit = this.state.optionLimits[optionId] || 0;
     const oldTotal = this.getTotalQuantityForOption(optionId);
     const newTotal = oldTotal + 1;
-    
+
     if (limit > 0 && newTotal > limit) return; // 한도 초과
 
     // 상태 변경에 따른 Cafe24 원본 DOM 동기화
@@ -154,7 +154,7 @@ class Store {
     this.state = {
       ...this.state,
       cartItems: [...this.state.cartItems, newItem],
-      selectedOption: null, 
+      selectedOption: null,
       flavorSelections: {},
       totalSelectedCount: 0,
     };
@@ -163,7 +163,7 @@ class Store {
 
   // 장바구니 아이템 수량 변경 (+/-)
   updateCartItemQuantity(id: string, delta: number) {
-    const item = this.state.cartItems.find(i => i.id === id);
+    const item = this.state.cartItems.find((i) => i.id === id);
     if (!item) return;
 
     const optionId = item.optionId;
@@ -179,9 +179,9 @@ class Store {
 
     this.state = {
       ...this.state,
-      cartItems: this.state.cartItems.map(i => 
-        i.id === id ? { ...i, quantity: i.quantity + delta } : i
-      )
+      cartItems: this.state.cartItems.map((i) =>
+        i.id === id ? { ...i, quantity: i.quantity + delta } : i,
+      ),
     };
     this.notify();
   }

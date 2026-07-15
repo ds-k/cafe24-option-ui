@@ -54,14 +54,10 @@ export class MobileApp {
   private render() {
     this.rootElement.innerHTML = `
       <div class="custom-option-wrapper mobile">
-        <!-- 고정 하단 바 -->
-        <div class="mobile-floating-bar">
-          <button class="btn-cart">
-            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-              <path d="M16 11V7C16 4.79086 14.2091 3 12 3C9.79086 3 8 4.79086 8 7V11M5.8973 8.35821L4.54581 19.1791C4.33157 20.893 5.67069 22.4 7.40113 22.4H16.5989C18.3293 22.4 19.6684 20.893 19.4542 19.1791L18.1027 8.35821C17.9254 6.94025 16.7262 5.86667 15.2974 5.86667H8.70258C7.27376 5.86667 6.07461 6.94025 5.8973 8.35821Z" stroke="#333333" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-            </svg>
-          </button>
-          <button class="btn-buy">바로 구매하기</button>
+        <!-- 고정 하단 바 (닫혀 있을 때) -->
+        <div class="mobile-floating-bar closed-state">
+          <button class="btn-cart-half">장바구니</button>
+          <button class="btn-buy-half">바로 구매하기</button>
         </div>
 
         <!-- 바텀 시트 오버레이 -->
@@ -83,8 +79,15 @@ export class MobileApp {
             </div>
             <div class="selected-options-container"></div>
             <div class="mobile-sheet-footer">
-               <div class="mobile-total-price-area" style="display: none; justify-content: space-between; align-items: center; margin-bottom: 12px;"></div>
-               <button class="btn-buy-submit">바로 구매하기</button>
+               <div class="mobile-total-price-area" style="display: none; justify-content: space-between; align-items: flex-end; margin-bottom: 12px;"></div>
+               <div class="mobile-action-buttons">
+                 <button class="btn-cart-small">
+                   <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                     <path d="M16 11V7C16 4.79086 14.2091 3 12 3C9.79086 3 8 4.79086 8 7V11M5.8973 8.35821L4.54581 19.1791C4.33157 20.893 5.67069 22.4 7.40113 22.4H16.5989C18.3293 22.4 19.6684 20.893 19.4542 19.1791L18.1027 8.35821C17.9254 6.94025 16.7262 5.86667 15.2974 5.86667H8.70258C7.27376 5.86667 6.07461 6.94025 5.8973 8.35821Z" stroke="#333333" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                   </svg>
+                 </button>
+                 <button class="btn-buy-submit">바로 구매하기</button>
+               </div>
             </div>
           </div>
           
@@ -139,27 +142,53 @@ export class MobileApp {
   }
 
   private bindEvents() {
-    const btnCart = this.rootElement.querySelector(".btn-cart") as HTMLElement;
-    const btnBuy = this.rootElement.querySelector(".btn-buy") as HTMLElement;
+    const btnCartHalf = this.rootElement.querySelector(".btn-cart-half") as HTMLElement;
+    const btnBuyHalf = this.rootElement.querySelector(".btn-buy-half") as HTMLElement;
+    const floatingBar = this.rootElement.querySelector(".mobile-floating-bar") as HTMLElement;
+    
     const overlay = this.rootElement.querySelector(".mobile-bottom-sheet-overlay") as HTMLElement;
     const bottomSheet = this.rootElement.querySelector(".mobile-bottom-sheet") as HTMLElement;
+    
+    const btnCartSmall = this.rootElement.querySelector(".btn-cart-small") as HTMLElement;
     const btnBuySubmit = this.rootElement.querySelector(".btn-buy-submit") as HTMLElement;
 
     const openSheet = () => {
       overlay.classList.add("active");
       bottomSheet.classList.add("active");
+      floatingBar.style.display = "none"; // 열릴 때 하단 바 숨김
     };
 
     const closeSheet = () => {
       overlay.classList.remove("active");
       bottomSheet.classList.remove("active");
+      floatingBar.style.display = "flex"; // 닫힐 때 하단 바 보임
     };
 
-    btnCart.addEventListener("click", openSheet);
-    btnBuy.addEventListener("click", openSheet);
+    btnCartHalf.addEventListener("click", openSheet);
+    btnBuyHalf.addEventListener("click", openSheet);
     overlay.addEventListener("click", closeSheet);
     
-    // 바텀 시트 내에서의 구매하기 버튼 클릭
+    // 바텀 시트 내에서의 진짜 장바구니 버튼 클릭
+    btnCartSmall.addEventListener("click", () => {
+      const state = store.getState();
+      if (state.cartItems.length === 0) {
+        window.dispatchEvent(new CustomEvent("show-toast", {
+          detail: { message: "옵션을 선택해 주세요.", type: "error" }
+        }));
+        return;
+      }
+      const nativeCartBtn = document.querySelector("#actionCart, #actionCartClone, .btnBasket") as HTMLElement;
+      if (nativeCartBtn) {
+         nativeCartBtn.click();
+         closeSheet();
+      } else {
+         window.dispatchEvent(new CustomEvent("show-toast", {
+          detail: { message: "모바일 장바구니 버튼을 찾을 수 없습니다.", type: "error" }
+        }));
+      }
+    });
+
+    // 바텀 시트 내에서의 진짜 구매하기 버튼 클릭
     btnBuySubmit.addEventListener("click", () => {
       const state = store.getState();
       if (state.cartItems.length === 0) {
@@ -169,7 +198,6 @@ export class MobileApp {
         return;
       }
       
-      // 실제 구매 버튼 클릭 이벤트 트리거
       const nativeBuyBtn = document.querySelector("#btn_buy_mobile_clone_id, #actionBuy, a.btnStrong") as HTMLElement;
       if (nativeBuyBtn) {
          nativeBuyBtn.click();
